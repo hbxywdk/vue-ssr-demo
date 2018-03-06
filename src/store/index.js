@@ -30,13 +30,7 @@ let actions = {
         commit('setDetail', res.data.data)
       }
     })
-  },
-  // fetchDetail ({ commit }, id) {
-  //   return axios.get('http://carnt.carnettong.com:8088/CARNT/SysCommonWeb/getSysParamListByGroupId?GROUP_ID=MAINBRAND')
-  //   .then(function (res) {
-  //     commit('setDetail', res.data.data)
-  //   })
-  // }
+  }
 }
 
 // 改变

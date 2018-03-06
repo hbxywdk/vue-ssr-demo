@@ -13,7 +13,7 @@
 			<div class="page_btn" @click="pageChange('prev')">上一页</div>
 			<div class="page_btn" @click="pageChange('next')">下一页</div>
 		</div>
-		<h1 style="text-align: center;">{{ test.length }}</h1>
+		<h1 style="text-align: center;">不需要SSR的数据-》{{ test.length }}</h1>
 	</div>
 </template>
 <script>
@@ -24,7 +24,7 @@
 		 * @param  {[Object]} store [Vuex Store]
 		 * 此函数会在组件实例化之前调用，所以它无法访问 this。需要将 store 和路由信息作为参数传递进去：
 		 */
-		asyncData (store) {
+		asyncData (store, route) {
 			// console.log(store)
 			// return store.dispatch('getMoving', { id: store.state.route.params.id })
 			return store.dispatch('fetchLists', { page: 1 }) // 服务端渲染触发
@@ -50,19 +50,18 @@
 		// 	}
 		// },
 		mounted() {
-			console.log(this)
-			axios.get('http://carnt.carnettong.com:8088/CARNT/SysCommonWeb/getSysParamListByGroupId?GROUP_ID=MAINBRAND')
+			// 不需要SSR的数据在这里请求
+			axios.get('https://cnodejs.org/api/v1/topics?tab=ask')
 			.then((res) => {
-				console.warn('mounted', res.data.RESULT_DATA)
-				this.test = res.data.RESULT_DATA
+				console.warn('mounted', res.data)
+				this.test = res.data.data
 			})
 		},
 		// 方法
 		methods: {
-			// 客户端渲染拉取数据
-			fetchLists () {
-				this.$store.dispatch('fetchLists', { page: 1 }) // 服务端渲染触发
-			},
+			// fetchLists () {
+			// 	this.$store.dispatch('fetchLists', { page: 1 }) // 服务端渲染触发
+			// },
 			pageChange (type) {
 				if (type == 'prev' && this.page == 1) return
 				if (type == 'prev') {

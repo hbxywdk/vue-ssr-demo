@@ -9,7 +9,7 @@ Vue.use(Router)
 
 export function createRouter () {
   return new Router({
-    mode: 'history', // SSR必须使用history模式，因为hash不会发送到服务端
+    mode: 'history', // SSR必须使用history模式
     scrollBehavior: () => ({y: 0}),
     routes: [
       // 主页

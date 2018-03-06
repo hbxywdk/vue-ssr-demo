@@ -11,7 +11,7 @@ import { app, store, router } from './app'
 
 //（1）
 // 全局mixin，beforeRouteEnter，切换路由时，调用asyncData方法拉取数据进行客户端渲染
-// 注意beforeRouteEnter无法直接或许到当前组件this，需使用next((vm)=>{ vm即为this }) 获取
+// 注意beforeRouteEnter无法直接获取到当前组件this，需使用next((vm)=>{ vm即为this }) 获取
 Vue.mixin({
   beforeRouteEnter (to, from, next) {
     console.log('beforeRouteEnter')

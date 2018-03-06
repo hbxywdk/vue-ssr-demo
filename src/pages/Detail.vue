@@ -26,7 +26,7 @@
 		asyncData (store, route) {
 			let articleId = route.query.id // 文章id
 			console.log(articleId)
-			return store.dispatch('fetchDetail', { id: articleId }) // 服务端渲染触发
+			return store.dispatch('fetchDetail', { id: articleId }) // 服务端渲染执行
 		},
 		name: "detail",
 		// 数据
@@ -38,7 +38,7 @@
 		// 计算属性
 		computed: {
 	      article () {
-	        return this.$store.getters.getDetail // 文章列表
+	        return this.$store.getters.getDetail // 文章详情
 	      },
 		},
 		beforeMount () {
@@ -49,15 +49,13 @@
 		},
 		mounted() {
 			// code...
-			// let articleId = this.$route.query.id // 文章id
-			// this.$store.dispatch('fetchDetail', { id: articleId })
 		},
 		// 方法
 		methods: {
-			fetchDetail() {
-				let articleId = this.$route.query.id // 文章id
-				this.$store.dispatch('fetchDetail', { id: articleId }) // 服务端渲染触发
-			}
+			// fetchDetail() {
+			// 	let articleId = this.$route.query.id // 文章id
+			// 	this.$store.dispatch('fetchDetail', { id: articleId }) // 服务端渲染触发
+			// }
 		},
 		// 子组件
 		components: {
