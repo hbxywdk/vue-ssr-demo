@@ -56,22 +56,6 @@ app.use('/public', serve('./public', true)) // 静态资源 （如：http://loca
 app.use('/manifest.json', serve('./manifest.json', true))
 app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
-/**
- * proxy middleware options
- * 代理跨域配置
- * @type {{target: string, changeOrigin: boolean, pathRewrite: {^/api: string}}}
- */
-// var options = {
-//   target: 'http://api.douban.com/v2', // target host
-//   changeOrigin: true,               // needed for virtual hosted sites
-//   pathRewrite: {
-//     '^/api': ''
-//   }
-// };
-
-// var exampleProxy = proxy(options);
-// app.use('/api', exampleProxy);
-
 app.get('*', (req, res) => {
   // 未渲染好返回
   if (!renderer) {
