@@ -10,7 +10,7 @@ npm run build
 npm run start
 // 注意：vue 与 vue-server-renderer版本必须 一致。
 ```
-######什么是单页面应用（SPA）
+###### 什么是单页面应用（SPA）
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着React、Vue等框架的流行，越来越多的网站开始使用这些框架编写，React、Vue都有自己的路由，使用了路由制作的网站其实就是单页面应用。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单页面项目打包出来只有一个html文件，看似各个页面之间无刷新切换，其实是通过hash，或者history api来进行路由的显隐，并通过ajax拉取数据来实现响应功能。因为整个webapp就一个html，所以叫单页面。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单页面应用虽然带来了一部分用户体验的提升，但也带来了新的问题：
@@ -38,7 +38,7 @@ npm run start
  
 </html>
 ```
-######什么是服务端渲染
+###### 什么是服务端渲染
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里说的服务端渲染并不是指传统的jsp那种，而是服务器根据请求的路径，直接读取Vue代码，将需要首屏展示的数据直接由服务端请求并将其注入到HTML中返回给前端，这样前端拿到的就不再是空白一片的页面。
 
 先以Vue官方例子简单了解一下：
@@ -81,7 +81,7 @@ server.listen(8080)
   </body>
 </html>
 ```
-######下面我们先建一个最基本的项目
+###### 下面我们先建一个最基本的项目
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个文章列表页，一个文章详情页。
 ```
 // router.js
@@ -195,7 +195,7 @@ export default {
 
 ---
 
-######server.js
+###### server.js
 根据不同的访问路径，返回不同的内容
 ```
 app.get('*', (req, res) => {
@@ -222,7 +222,7 @@ app.listen(3002, () => {
   console.log(`server started at localhost:${port}`)
 })
 ```
-######入口文件
+###### 入口文件
 这里会有两个入口文件：
 `entry-client.js 客户端使用的入口文件。`
 ```
@@ -282,7 +282,7 @@ export default context => {
 webpack.client.config.js   用于打包文件到dist目录下，
 [webpack.server.config.js](https://ssr.vuejs.org/zh/build-config.html) 用于生成传递给 createBundleRenderer 的 server bundle
 
-######不需要服务端渲染的数据处理
+###### 不需要服务端渲染的数据处理
 对于不需要服务端渲染的数据，我们可以将其写在mounted钩子函数中，写法和我们的平时写法相同。
 ```
 mounted() {
@@ -292,7 +292,7 @@ mounted() {
 	})
 }
 ```
-######路由切换后的数据获取
+###### 路由切换后的数据获取
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们把代码运行起来后，点击文章详情，会发现文章详情的对应请求并没有发出，这是因为服务器在收到第一次请求后就已经把所有代码给了客户端，客户端的路由切换，服务端并不会收到请求，所以对应组件的 asyncData 方法并不会被执行。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里的解决方法就是注册全局mixin.
 `全局mixin，beforeRouteEnter，切换路由时，调用asyncData方法拉取数据进行客户端渲染（注意beforeRouteEnter无法直接获取到当前组件this，需使用next((vm)=>{ vm即为this }) 获取）`
@@ -312,7 +312,7 @@ Vue.mixin({
 })
 ```
 最终运行后，查看网页源代码，可以看到网站不再是空白一片了。
-![1.png](http://upload-images.jianshu.io/upload_images/3981829-59f6c8d93679d853.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![1.png](https://github.com/hbxywdk/vue-ssr-demo/blob/master/1.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲到这里差不多就讲完了，从头搭建一个服务端渲染的应用是比较复杂的，其实我自己也不能说完全明白，这里我仅把我自己的理解写出来，或许我的描述并不是很好，但是希望对大家能有所帮助。
 
