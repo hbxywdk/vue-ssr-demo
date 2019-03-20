@@ -230,6 +230,7 @@ import Vue from 'vue'
 import { app, store, router } from './app'
 // 上面有说过，服务端获取到的数据会以DOM的形式插入HTML中，同时，还会将获取到的数据写入到window.__INITIAL_STATE__中
 // 客户端使用 window.__INITIAL_STATE__ 中的数据替换store中的数据
+// 在客户端，vue组件会使用computed来取出store中的数据
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
