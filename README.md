@@ -315,7 +315,7 @@ Vue.mixin({
 最终运行后，查看网页源代码，可以看到网站不再是空白一片了。
 ![1.png](https://github.com/hbxywdk/vue-ssr-demo/blob/master/1.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲到这里差不多就讲完了，从头搭建一个服务端渲染的应用是比较复杂的，其实我自己也不能说完全明白，这里我仅把我自己的理解写出来，或许我的描述并不是很好，但是希望对大家能有所帮助。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲到这里差不多就讲完了，从头搭建一个服务端渲染的应用还是比较复杂的，如果需求不复杂的话，推荐使用[Nuxt](https://zh.nuxtjs.org/guide)来做服务端渲染项目。
 
 
 
